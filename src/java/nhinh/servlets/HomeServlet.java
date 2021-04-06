@@ -46,9 +46,10 @@ public class HomeServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             CarDAO cdao = new CarDAO();
             List<CarDTO> list = new ArrayList<>();
-            cdao.getAllCateogory();
+            cdao.getAllCar();
             list = cdao.getCarList();
             request.setAttribute("LIST_OR_CAR", list);
+            request.setAttribute("CAR", cdao.getACar());
         } catch (SQLException ex) {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {

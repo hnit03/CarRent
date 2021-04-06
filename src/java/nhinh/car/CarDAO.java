@@ -47,7 +47,7 @@ public class CarDAO implements Serializable {
         return carList;
     }
 
-    public void getAllCateogory() throws SQLException, NamingException {
+    public void getAllCar() throws SQLException, NamingException {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
@@ -79,5 +79,36 @@ public class CarDAO implements Serializable {
         } finally {
             closeConnection();
         }
+    }
+    public CarDTO getACar() throws SQLException, NamingException {
+        CarDTO dto = null;
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "select carID, carName,image,color,year,categoryID,price,quantity,statusID "
+                        + "from Car";
+                ps = con.prepareStatement(sql);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    String carID = rs.getString("carID");
+                    String carName = rs.getString("carName");
+                    String image = rs.getString("image");
+                    String color = rs.getString("color");
+                    ColorDAO cdao = new ColorDAO();
+                    ColorDTO colorDTO = cdao.getColor(color);
+                    int year = rs.getInt("year");
+                    String categoryID = rs.getString("categoryID");
+                    CategoryDAO cateDAO = new CategoryDAO();
+                    CategoryDTO cateDTO = cateDAO.getCateogory(categoryID);
+                    String price = rs.getString("price");
+                    int quantity = rs.getInt("quantity");
+                    String statusID = rs.getString("statusID");
+                    dto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return dto;
     }
 }
