@@ -19,7 +19,7 @@ import nhinh.utils.DBHelper;
  *
  * @author PC
  */
-public class CatergoryDAO implements Serializable {
+public class CategoryDAO implements Serializable {
 
     private Connection con = null;
     private PreparedStatement ps = null;
@@ -64,5 +64,27 @@ public class CatergoryDAO implements Serializable {
         } finally {
             closeConnection();
         }
+    }
+    
+    public CategoryDTO getCateogory(String categoryID) throws SQLException, NamingException {
+        CategoryDTO cdto = null;
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "select categoryName "
+                        + "from Category "
+                        + "where categoryID = ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, categoryID);
+                rs = ps.executeQuery();
+                if (rs.next()) {                    
+                    String cateName = rs.getString("categoryName");
+                    cdto = new CategoryDTO(categoryID, cateName);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return cdto;
     }
 }

@@ -64,4 +64,25 @@ public class ColorDAO implements Serializable{
             closeConnection();
         }
     }
+    public ColorDTO getColor(String colorID) throws SQLException, NamingException {
+        ColorDTO cdto = null;
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "select color "
+                        + "from Color "
+                        + "where colorID = ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, colorID);
+                rs = ps.executeQuery();
+                if (rs.next()) {                    
+                    String color = rs.getString("color");
+                    cdto = new ColorDTO(colorID, color);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return cdto;
+    }
 }
