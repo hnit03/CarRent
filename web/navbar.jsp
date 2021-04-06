@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Car Rent &mdash; Free Website Template by Colorlib</title>
+        <title>Car Rent</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -61,11 +61,10 @@
                                 <li><a href="about.html" class="nav-link">About</a></li>
                                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                                 <li><a href="contact.html" class="nav-link">Contact</a></li>
+                                <li><a href="signin" class="nav-link">Login</a></li>
                             </ul>
                         </nav>
                     </div>
-
-
                 </div>
             </div>
 

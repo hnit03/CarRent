@@ -1,3 +1,5 @@
  =HomeServlet
 index=index.jsp
 home=HomeServlet
+signin=login.jsp
+login=LoginServlet
