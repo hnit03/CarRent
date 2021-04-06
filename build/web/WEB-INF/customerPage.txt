@@ -1,2 +1,2 @@
-home=index.jsp
-startUp=StartUpServlet
+index=index.jsp
+home=HomeServlet
