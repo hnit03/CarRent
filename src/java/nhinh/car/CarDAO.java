@@ -23,11 +23,12 @@ import nhinh.utils.DBHelper;
  *
  * @author PC
  */
-public class CarDAO implements Serializable{
+public class CarDAO implements Serializable {
+
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    
+
     private void closeConnection() throws SQLException {
         if (rs != null) {
             rs.close();
@@ -39,22 +40,22 @@ public class CarDAO implements Serializable{
             con.close();
         }
     }
-    
+
     private List<CarDTO> carList;
 
     public List<CarDTO> getCarList() {
         return carList;
     }
-    
+
     public void getAllCateogory() throws SQLException, NamingException {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "select carID,carName,image,color,year,categoryID,price,quantity,statusID "
-                        + "from Category";
+                String sql = "select carID, carName,image,color,year,categoryID,price,quantity,statusID "
+                        + "from Car";
                 ps = con.prepareStatement(sql);
                 rs = ps.executeQuery();
-                while (rs.next()) {                    
+                while (rs.next()) {
                     String carID = rs.getString("carID");
                     String carName = rs.getString("carName");
                     String image = rs.getString("image");
@@ -69,7 +70,7 @@ public class CarDAO implements Serializable{
                     int quantity = rs.getInt("quantity");
                     String statusID = rs.getString("statusID");
                     CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
-                    if (this.carList ==null) {
+                    if (this.carList == null) {
                         this.carList = new ArrayList<>();
                     }
                     this.carList.add(cdto);

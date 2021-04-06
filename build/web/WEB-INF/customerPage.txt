@@ -1,2 +1,3 @@
+ =HomeServlet
 index=index.jsp
 home=HomeServlet

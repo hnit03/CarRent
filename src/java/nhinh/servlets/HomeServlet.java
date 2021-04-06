@@ -7,11 +7,20 @@ package nhinh.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import nhinh.car.CarDAO;
+import nhinh.car.CarDTO;
 
 /**
  *
@@ -35,8 +44,18 @@ public class HomeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            
+            CarDAO cdao = new CarDAO();
+            List<CarDTO> list = new ArrayList<>();
+            cdao.getAllCateogory();
+            list = cdao.getCarList();
+            request.setAttribute("LIST_OR_CAR", list);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
+            RequestDispatcher rd =request.getRequestDispatcher("index");
+            rd.forward(request, response);
             out.close();
         }
     }
