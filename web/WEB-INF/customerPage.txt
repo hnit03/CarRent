@@ -8,3 +8,5 @@ cars=CarsServlet
 logout=LogoutServlet
 signup=register.jsp
 register=RegisterServlet
+verify=verify.jsp
+verified=VerifyServlet

@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.mail.MessagingException;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +28,7 @@ import nhinh.status.StatusDAO;
 import nhinh.status.StatusDTO;
 import nhinh.utils.SHA256;
 import nhinh.utils.Utils;
+import nhinh.utils.VerifyGmail;
 
 /**
  *
@@ -83,16 +85,16 @@ public class RegisterServlet extends HttpServlet {
                     StatusDAO sdao = new StatusDAO();
                     StatusDTO sdto = sdao.getStatusVerify();
                     AccountDTO dto = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate);
-//                    VerifyGmail vg = new VerifyGmail();
-//                    String code = vg.sendEmail(email);
+                    VerifyGmail vg = new VerifyGmail();
+                    String code = vg.sendEmail(email);
 
                     boolean success = dao.createNewAccount(dto);
                     if (success) {
                         HttpSession codeSession = request.getSession(true);
                         codeSession.setMaxInactiveInterval(5*60);
-//                        codeSession.setAttribute("CODE_VERIFY", code);
+                        codeSession.setAttribute("CODE_VERIFY", code);
                         codeSession.setAttribute("EMAIL", email);
-                        url = "signin";
+                        url = "verify";
                     }
 
                 }
@@ -104,6 +106,8 @@ public class RegisterServlet extends HttpServlet {
             //       log.error("RegisterServlet_Naming:" + ex.getMessage());
             ex.printStackTrace();
         } catch (NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
             ex.printStackTrace();
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
