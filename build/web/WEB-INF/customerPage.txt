@@ -6,3 +6,5 @@ login=LoginServlet
 car=cars.jsp
 cars=CarsServlet
 logout=LogoutServlet
+signup=register.jsp
+register=RegisterServlet
