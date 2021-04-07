@@ -11,6 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NamingException;
+import nhinh.role.RoleDAO;
+import nhinh.role.RoleDTO;
+import nhinh.status.StatusDAO;
+import nhinh.status.StatusDTO;
 import nhinh.utils.DBHelper;
 
 /**
@@ -63,7 +67,8 @@ public class AccountDAO implements Serializable {
     }
     
     public AccountDTO getAccountDTO(String email) throws SQLException, NamingException {
-
+        RoleDAO rdao = new RoleDAO();
+        StatusDAO sdao = new StatusDAO();
         AccountDTO dTO = null;
         try {
             con = DBHelper.makeConnection();
@@ -78,10 +83,12 @@ public class AccountDAO implements Serializable {
                     String pass = rs.getString("password");
                     String phone = rs.getString("phone");
                     String roleID = rs.getString("roleID");
+                    RoleDTO rdto = rdao.getRoleDTO(roleID);
                     String statusID = rs.getString("statusID");
+                    StatusDTO sdto = sdao.getStatusDTO(statusID);
                     String createDate = rs.getString("createDate");
                     String fullname = rs.getString("fullname");
-                    dTO = new AccountDTO(email, pass, fullname, roleID, statusID, phone, createDate);
+                    dTO = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate);
                 }
             }
         } finally {
@@ -98,9 +105,9 @@ public class AccountDAO implements Serializable {
                 ps = con.prepareStatement(sql);
                 ps.setString(1, dto.getEmail());
                 ps.setString(2, dto.getPassword());
-                ps.setString(3, dto.getRoleID());
+                ps.setString(3, dto.getRdto().getRoleID());
                 ps.setString(4, dto.getFullname());
-                ps.setString(5, dto.getStatusID());
+                ps.setString(5, dto.getSdto().getStatusID());
                 ps.setString(6, dto.getPhone());
                 ps.setString(7, dto.getCreateDate());
                 int success = ps.executeUpdate();

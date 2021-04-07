@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,7 +44,7 @@
 
                     <div class="col-3 ">
                         <div class="site-logo">
-                            <a href="index.html">CarRent</a>
+                            <a href="home">CarRent</a>
                         </div>
                     </div>
 
@@ -55,13 +56,23 @@
 
                         <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                                <li class="active"><a href="index.html" class="nav-link">Home</a></li>
+                                <li><a href="home" class="nav-link">Home</a></li>
                                 <li><a href="services.html" class="nav-link">Services</a></li>
                                 <li><a href="cars.html" class="nav-link">Cars</a></li>
                                 <li><a href="about.html" class="nav-link">About</a></li>
                                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                                 <li><a href="contact.html" class="nav-link">Contact</a></li>
-                                <li><a href="signin" class="nav-link">Login</a></li>
+                                    <c:set var="account" value="${sessionScope.ACCOUNT}"/>
+                                    <c:if test="${not empty account}">
+                                    <li><a class="nav-link">${account.fullname}</a></li>
+                                    <li>
+                                        <a href="logout" class="nav-link">Logout</a>
+                                    </li>
+                                    </c:if>
+                                    <c:if test="${empty account}">
+                                    <li><a href="signin" class="nav-link">Login</a></li>
+                                    </c:if>
+
                             </ul>
                         </nav>
                     </div>

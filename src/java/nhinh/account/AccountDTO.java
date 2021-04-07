@@ -6,30 +6,32 @@
 package nhinh.account;
 
 import java.io.Serializable;
+import nhinh.role.RoleDTO;
+import nhinh.status.StatusDTO;
 
 /**
  *
  * @author PC
  */
-public class AccountDTO implements Serializable {
+ public class AccountDTO implements Serializable {
 
     private String email;
     private String password;
     private String fullname;
-    private String roleID;
-    private String statusID;
+    private RoleDTO rdto;
+    private StatusDTO sdto;
     private String phone;
     private String createDate;
 
     public AccountDTO() {
     }
 
-    public AccountDTO(String email, String password, String fullname, String roleID, String statusID, String phone, String createDate) {
+    public AccountDTO(String email, String password, String fullname, RoleDTO rdto, StatusDTO sdto, String phone, String createDate) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
-        this.roleID = roleID;
-        this.statusID = statusID;
+        this.rdto = rdto;
+        this.sdto = sdto;
         this.phone = phone;
         this.createDate = createDate;
     }
@@ -76,7 +78,34 @@ public class AccountDTO implements Serializable {
         this.fullname = fullname;
     }
 
-    
+    /**
+     * @return the rdto
+     */
+    public RoleDTO getRdto() {
+        return rdto;
+    }
+
+    /**
+     * @param rdto the rdto to set
+     */
+    public void setRdto(RoleDTO rdto) {
+        this.rdto = rdto;
+    }
+
+    /**
+     * @return the sdto
+     */
+    public StatusDTO getSdto() {
+        return sdto;
+    }
+
+    /**
+     * @param sdto the sdto to set
+     */
+    public void setSdto(StatusDTO sdto) {
+        this.sdto = sdto;
+    }
+
     /**
      * @return the phone
      */
@@ -105,31 +134,5 @@ public class AccountDTO implements Serializable {
         this.createDate = createDate;
     }
 
-    /**
-     * @return the roleID
-     */
-    public String getRoleID() {
-        return roleID;
-    }
-
-    /**
-     * @param roleID the roleID to set
-     */
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
-    }
-
-    /**
-     * @return the statusID
-     */
-    public String getStatusID() {
-        return statusID;
-    }
-
-    /**
-     * @param statusID the statusID to set
-     */
-    public void setStatusID(String statusID) {
-        this.statusID = statusID;
-    }
+    
 }
