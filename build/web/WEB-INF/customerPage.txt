@@ -10,4 +10,4 @@ signup=register.jsp
 register=RegisterServlet
 verify=verify.jsp
 verified=VerifyServlet
-verify/again=VerifyAgainServlet
+verify_again=VerifyAgainServlet

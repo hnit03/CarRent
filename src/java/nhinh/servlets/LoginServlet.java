@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 AccountDTO dto = dao.getAccountDTO(email);
                 if (dto.getSdto().getStatusName().equals("Verifying")) {
-                    url = "VerifyAgainServlet";
+                    url = "verify_again";
                     session.setAttribute("EMAIL", dto.getEmail());
                     session.setMaxInactiveInterval(5 * 60);
                 } else if (dto.getSdto().getStatusName().equals("Active")) {

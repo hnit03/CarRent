@@ -69,7 +69,7 @@
                                             <input type="submit" value="Verify" class="form-control btn "/>
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="" class=" nav-link form-control btn disabled" id="sendAgain">Send again (60)</a>
+                                            <a href="verify_again" class=" nav-link form-control btn disabled" id="sendAgain">Send again (60)</a>
                                             <script>
                                                 var examTime = 59;
                                                 function startTimer(duration, display) {
