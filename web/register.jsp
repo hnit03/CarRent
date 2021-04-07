@@ -39,6 +39,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-8">
                             <div class="feature-car-rent-box-1 ">
+                                <c:set var="error" value="${requestScope.ERROR}"/>
                                 <h3>Register</h3>
                                 <form action="register" method="POST">
                                     <div class="row">
@@ -51,6 +52,9 @@
                                                                name="email" value="${param.email}"
                                                                minlength="6"
                                                                >
+                                                        <c:if test="${not empty error.emailIsExist}">
+                                                            <font color="red">${error.emailIsExist}</font>
+                                                        </c:if>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -67,6 +71,9 @@
                                                                name="confirmPassword" value="${param.confirmPassword}"
                                                                minlength="6" maxlength="32"
                                                                >
+                                                        <c:if test="${not empty error.comfirmNotMatch}">
+                                                            <font color="red">${error.comfirmNotMatch}</font>
+                                                        </c:if>
                                                     </div>
                                                 </li>
                                             </ul>

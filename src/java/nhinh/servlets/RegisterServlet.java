@@ -65,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
                     && !fullname.trim().isEmpty()) {
                 boolean err = false;
                 if (dao.checkEmailDup(email)) {
-                    errors.setEmailIsExist(email + "is existed!!!");
+                    errors.setEmailIsExist(email + " is existed!!!");
                     err = true;
                 }
                 if (!confirmPassword.equals(password)) {
