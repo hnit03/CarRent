@@ -58,9 +58,7 @@
                             <ul class="site-menu main-menu js-clone-nav ml-auto ">
                                 <li><a href="home" class="nav-link">Home</a></li>
                                 <li><a href="services.html" class="nav-link">Services</a></li>
-                                <li><a href="cars.html" class="nav-link">Cars</a></li>
-                                <li><a href="about.html" class="nav-link">About</a></li>
-                                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                                <li><a href="cars" class="nav-link">Cars</a></li>
                                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                                     <c:set var="account" value="${sessionScope.ACCOUNT}"/>
                                     <c:if test="${not empty account}">
