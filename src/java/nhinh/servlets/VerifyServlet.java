@@ -48,9 +48,7 @@ public class VerifyServlet extends HttpServlet {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 long currentTime = System.currentTimeMillis() / 1000;
-                System.out.println("1111 " + currentTime);
                 long lastSessionAccessedTime = session.getLastAccessedTime() / 1000;
-                System.out.println("2222 " + lastSessionAccessedTime);
                 int inactiveInterval = (int) (currentTime - lastSessionAccessedTime);
                 String codeVerify = (String) session.getAttribute("CODE_VERIFY");
                 String email = (String) session.getAttribute("EMAIL");
@@ -67,7 +65,6 @@ public class VerifyServlet extends HttpServlet {
                         session.removeAttribute("EMAIL");
                         response.sendRedirect(url);
                     }
-
                 }
             } else {
                 request.setAttribute("EXPIRED", "Verify code is expired. Please send again.");

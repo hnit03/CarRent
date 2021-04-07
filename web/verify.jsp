@@ -79,7 +79,7 @@
                                     <div class="col-lg-8">
                                     <c:set var="expire" value="${requestScope.EXPIRED}"/>
                                     <c:if test="${not empty expire}">
-                                        <p style="color: red;font-weight: bold">${error}</p>
+                                        <p style="color: red;font-weight: bold">${expire}</p>
                                     </c:if>
                                 </div>
                                 <div class="col-lg-2"></div>
