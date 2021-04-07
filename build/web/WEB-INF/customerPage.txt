@@ -5,3 +5,4 @@ signin=login.jsp
 login=LoginServlet
 car=cars.jsp
 cars=CarsServlet
+logout=LogoutServlet
