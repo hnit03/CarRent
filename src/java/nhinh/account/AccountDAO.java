@@ -73,7 +73,7 @@ public class AccountDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "select password,phone,fullname,roleID,statusID,createDate "
+                String sql = "select password,phone,fullname,roleID,statusID,createDate,address "
                         + "from Registration "
                         + "where email = ? ";
                 ps = con.prepareStatement(sql);
@@ -88,7 +88,8 @@ public class AccountDAO implements Serializable {
                     StatusDTO sdto = sdao.getStatusDTO(statusID);
                     String createDate = rs.getString("createDate");
                     String fullname = rs.getString("fullname");
-                    dTO = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate);
+                    String address = rs.getString("address");
+                    dTO = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate,address);
                 }
             }
         } finally {
@@ -100,8 +101,8 @@ public class AccountDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "insert into Registration(email,password,roleID,fullname,statusID,phone,createDate) "
-                        + "values(?,?,?,?,?,?,?)";
+                String sql = "insert into Registration(email,password,roleID,fullname,statusID,phone,createDate,address) "
+                        + "values(?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, dto.getEmail());
                 ps.setString(2, dto.getPassword());
@@ -110,6 +111,7 @@ public class AccountDAO implements Serializable {
                 ps.setString(5, dto.getSdto().getStatusID());
                 ps.setString(6, dto.getPhone());
                 ps.setString(7, dto.getCreateDate());
+                ps.setString(8, dto.getAddress());
                 int success = ps.executeUpdate();
                 if (success == 1) {
                     return true;

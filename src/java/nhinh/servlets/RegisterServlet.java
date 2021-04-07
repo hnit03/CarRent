@@ -59,6 +59,7 @@ public class RegisterServlet extends HttpServlet {
             String confirmPassword = request.getParameter("confirmPassword");
             String fullname = request.getParameter("fullname");
             String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
             AccountError errors = new AccountError();
             AccountDAO dao = new AccountDAO();
             if (!email.trim().isEmpty() && !password.trim().isEmpty() && !confirmPassword.trim().isEmpty()
@@ -84,7 +85,7 @@ public class RegisterServlet extends HttpServlet {
                     RoleDTO rdto = rdao.getRoleCustomer();
                     StatusDAO sdao = new StatusDAO();
                     StatusDTO sdto = sdao.getStatusVerify();
-                    AccountDTO dto = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate);
+                    AccountDTO dto = new AccountDTO(email, pass, fullname, rdto, sdto, phone, createDate,address);
                     VerifyGmail vg = new VerifyGmail();
                     String code = vg.sendEmail(email);
 

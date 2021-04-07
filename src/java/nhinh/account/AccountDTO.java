@@ -22,11 +22,11 @@ import nhinh.status.StatusDTO;
     private StatusDTO sdto;
     private String phone;
     private String createDate;
-
+    private String address;
     public AccountDTO() {
     }
 
-    public AccountDTO(String email, String password, String fullname, RoleDTO rdto, StatusDTO sdto, String phone, String createDate) {
+    public AccountDTO(String email, String password, String fullname, RoleDTO rdto, StatusDTO sdto, String phone, String createDate,String address) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
@@ -34,6 +34,7 @@ import nhinh.status.StatusDTO;
         this.sdto = sdto;
         this.phone = phone;
         this.createDate = createDate;
+        this.address = address;
     }
 
     /**
@@ -132,6 +133,20 @@ import nhinh.status.StatusDTO;
      */
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     
