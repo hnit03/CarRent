@@ -69,7 +69,30 @@
                                             <input type="submit" value="Verify" class="form-control btn "/>
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="" class=" nav-link form-control btn disabled">Send again (60)</a>
+                                            <a href="" class=" nav-link form-control btn disabled" id="sendAgain">Send again (60)</a>
+                                            <script>
+                                                var examTime = 59;
+                                                function startTimer(duration, display) {
+                                                    var timer = duration;
+                                                    var element = document.getElementById("sendAgain");
+                                                    var t = setInterval(function () {
+                                                        display.textContent = "Send again (" + timer + ")";
+                                                        if (--timer < 0) {
+                                                            timer = duration;
+                                                            if (!isNaN(t))
+                                                                clearInterval(t);
+                                                            if (display.textContent === "Send again (0)") {
+                                                                display.textContent = "Send again";
+                                                                element.classList.remove("disabled");
+                                                            }
+                                                        }
+                                                    }, 1000);
+                                                }
+                                                window.onload = function () {
+                                                    var display = document.querySelector('#sendAgain');
+                                                    startTimer(examTime, display);
+                                                };
+                                            </script>
                                         </div>
                                         <div class="col-lg-2"></div>
                                     </div>
