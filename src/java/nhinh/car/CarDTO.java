@@ -13,7 +13,8 @@ import nhinh.color.ColorDTO;
  *
  * @author PC
  */
-public class CarDTO implements Serializable{
+public class CarDTO implements Serializable {
+
     private String carID;
     private String carName;
     private String image;
@@ -23,11 +24,13 @@ public class CarDTO implements Serializable{
     private String price;
     private int quantity;
     private String statusID;
+    private float pointRating;
 
     public CarDTO() {
     }
 
-    public CarDTO(String carID, String carName, String image, ColorDTO cdto, int year, CategoryDTO cateDTO, String price, int quantity, String statusID) {
+    public CarDTO(String carID, String carName, String image, ColorDTO cdto,
+            int year, CategoryDTO cateDTO, String price, int quantity, String statusID, float point) {
         this.carID = carID;
         this.carName = carName;
         this.image = image;
@@ -37,6 +40,7 @@ public class CarDTO implements Serializable{
         this.price = price;
         this.quantity = quantity;
         this.statusID = statusID;
+        this.pointRating = point;
     }
 
     /**
@@ -164,7 +168,19 @@ public class CarDTO implements Serializable{
     public void setStatusID(String statusID) {
         this.statusID = statusID;
     }
-    
-    
-    
+
+    /**
+     * @return the pointRating
+     */
+    public float getPointRating() {
+        return pointRating;
+    }
+
+    /**
+     * @param pointRating the pointRating to set
+     */
+    public void setPointRating(float pointRating) {
+        this.pointRating = pointRating;
+    }
+
 }

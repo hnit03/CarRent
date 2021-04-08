@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
+import nhinh.Rating.RatingDAO;
 import nhinh.category.CategoryDAO;
 import nhinh.category.CategoryDTO;
 import nhinh.color.ColorDAO;
@@ -48,6 +49,9 @@ public class CarDAO implements Serializable {
     }
 
     public void getAllCar() throws SQLException, NamingException {
+        ColorDAO cdao = new ColorDAO();
+        CategoryDAO cateDAO = new CategoryDAO();
+        RatingDAO rdao = new RatingDAO();
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
@@ -60,16 +64,15 @@ public class CarDAO implements Serializable {
                     String carName = rs.getString("carName");
                     String image = rs.getString("image");
                     String color = rs.getString("color");
-                    ColorDAO cdao = new ColorDAO();
                     ColorDTO colorDTO = cdao.getColor(color);
                     int year = rs.getInt("year");
                     String categoryID = rs.getString("categoryID");
-                    CategoryDAO cateDAO = new CategoryDAO();
                     CategoryDTO cateDTO = cateDAO.getCateogory(categoryID);
                     String price = rs.getString("price");
                     int quantity = rs.getInt("quantity");
                     String statusID = rs.getString("statusID");
-                    CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
+                    float point = rdao.getRatingOfCar(carID);
+                    CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID, point);
                     if (this.carList == null) {
                         this.carList = new ArrayList<>();
                     }
@@ -83,6 +86,9 @@ public class CarDAO implements Serializable {
 
     public CarDTO getACar() throws SQLException, NamingException {
         CarDTO dto = null;
+        ColorDAO cdao = new ColorDAO();
+        CategoryDAO cateDAO = new CategoryDAO();
+        RatingDAO rdao = new RatingDAO();
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
@@ -95,16 +101,15 @@ public class CarDAO implements Serializable {
                     String carName = rs.getString("carName");
                     String image = rs.getString("image");
                     String color = rs.getString("color");
-                    ColorDAO cdao = new ColorDAO();
                     ColorDTO colorDTO = cdao.getColor(color);
                     int year = rs.getInt("year");
                     String categoryID = rs.getString("categoryID");
-                    CategoryDAO cateDAO = new CategoryDAO();
                     CategoryDTO cateDTO = cateDAO.getCateogory(categoryID);
                     String price = rs.getString("price");
                     int quantity = rs.getInt("quantity");
                     String statusID = rs.getString("statusID");
-                    dto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
+                    float point = rdao.getRatingOfCar(carID);
+                    dto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID, point);
                 }
             }
         } finally {
@@ -114,6 +119,9 @@ public class CarDAO implements Serializable {
     }
 
     public void searchCar(String name, String category) throws SQLException, NamingException {
+        ColorDAO cdao = new ColorDAO();
+        CategoryDAO cateDAO = new CategoryDAO();
+        RatingDAO rdao = new RatingDAO();
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
@@ -129,16 +137,15 @@ public class CarDAO implements Serializable {
                     String carName = rs.getString("carName");
                     String image = rs.getString("image");
                     String color = rs.getString("color");
-                    ColorDAO cdao = new ColorDAO();
                     ColorDTO colorDTO = cdao.getColor(color);
                     int year = rs.getInt("year");
                     String categoryID = rs.getString("categoryID");
-                    CategoryDAO cateDAO = new CategoryDAO();
                     CategoryDTO cateDTO = cateDAO.getCateogory(categoryID);
                     String price = rs.getString("price");
                     int quantity = rs.getInt("quantity");
                     String statusID = rs.getString("statusID");
-                    CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
+                    float point = rdao.getRatingOfCar(carID);
+                    CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID, point);
                     if (this.carList == null) {
                         this.carList = new ArrayList<>();
                     }

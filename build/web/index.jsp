@@ -144,11 +144,14 @@
                                                 <div class="text-center">
                                                     <h3><a href="#">${car.carName}</a></h3>
                                                     <div class="rating">
-                                                        <span class="icon-star text-warning"></span>
-                                                        <span class="icon-star text-warning"></span>
-                                                        <span class="icon-star text-warning"></span>
-                                                        <span class="icon-star text-warning"></span>
-                                                        <span class="icon-star text-warning"></span>
+                                                        <c:if test="${car.pointRating > 0}">
+                                                            <c:forEach begin="1" end="${car.pointRating}" step="1">
+                                                                <span class="icon-star text-warning"></span>
+                                                            </c:forEach>
+                                                        </c:if>
+                                                        <c:if test="${car.pointRating == 0}">
+                                                            No <span class="icon-star text-warning"></span>
+                                                        </c:if>
                                                     </div>
                                                     <div class="rent-price">${car.price}</div>
                                                 </div>
