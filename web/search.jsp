@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -24,7 +25,7 @@
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
         <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
         <link rel="stylesheet" href="css/aos.css">
-
+        
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">
 
@@ -66,27 +67,39 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="cf-2">Category</label>
-                                            <input type="text" id="cf-2" placeholder="Your drop-off address" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="cf-3">Journey date</label>
-                                            <input type="date" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="cf-4">Return date</label>
-                                            <input type="date" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
-                                        </div>
+                                            <select class="form-control" name="cboCategory">
+                                                <option value="">Choose Category</option>
+                                            <c:set var="categoryList" value="${applicationScope.CATEGORY_LIST}"/>
+                                            <c:if test="${not empty categoryList}">
+                                                <c:forEach var="cate" items="${categoryList}" varStatus="counter">
+                                                    <option value="${cate.category}"
+                                                            <c:if test="${cate.category eq param.cboCategory}">
+                                                                selected
+                                                            </c:if>
+                                                            >${cate.category}</option>
+                                                </c:forEach>
+                                            </c:if>
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <input type="submit" value="Search" class="btn btn-primary">
-                                        </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cf-3">Journey date</label>
+                                        <input type="date" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cf-4">Return date</label>
+                                        <input type="date" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="submit" value="Search" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
 
             <jsp:include page="howitwork.jsp"/>
 

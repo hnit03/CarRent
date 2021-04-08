@@ -47,13 +47,13 @@ public class CategoryDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "select categoryID, categoryName "
+                String sql = "select categoryID, category "
                         + "from Category";
                 ps = con.prepareStatement(sql);
                 rs = ps.executeQuery();
                 while (rs.next()) {                    
                     String cateID = rs.getString("categoryID");
-                    String cateName = rs.getString("categoryName");
+                    String cateName = rs.getString("category");
                     CategoryDTO cdto = new CategoryDTO(cateID, cateName);
                     if (this.categoryList == null) {
                         this.categoryList = new ArrayList<>();

@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
         <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
         <link rel="stylesheet" href="css/aos.css">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -56,9 +56,9 @@
 
                         <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                                <li><a href="search" class="nav-link"><i class="fas fa-search"></i></a></li>
                                 <li><a href="home" class="nav-link">Home</a></li>
                                 <li><a href="services.html" class="nav-link">Services</a></li>
-                                <li><a href="search" class="nav-link">Cars</a></li>
                                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                                     <c:set var="account" value="${sessionScope.ACCOUNT}"/>
                                     <c:if test="${not empty account}">
