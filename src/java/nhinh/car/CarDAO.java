@@ -80,6 +80,7 @@ public class CarDAO implements Serializable {
             closeConnection();
         }
     }
+
     public CarDTO getACar() throws SQLException, NamingException {
         CarDTO dto = null;
         try {
@@ -110,5 +111,42 @@ public class CarDAO implements Serializable {
             closeConnection();
         }
         return dto;
+    }
+
+    public void searchCar(String name, String category) throws SQLException, NamingException {
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "select carID, carName,image,color,year,categoryID,price,quantity,statusID "
+                        + "from Car "
+                        + "where carName like ? and categoryID like ? ";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, "%" + name + "%");
+                ps.setString(2, "%" + category + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    String carID = rs.getString("carID");
+                    String carName = rs.getString("carName");
+                    String image = rs.getString("image");
+                    String color = rs.getString("color");
+                    ColorDAO cdao = new ColorDAO();
+                    ColorDTO colorDTO = cdao.getColor(color);
+                    int year = rs.getInt("year");
+                    String categoryID = rs.getString("categoryID");
+                    CategoryDAO cateDAO = new CategoryDAO();
+                    CategoryDTO cateDTO = cateDAO.getCateogory(categoryID);
+                    String price = rs.getString("price");
+                    int quantity = rs.getInt("quantity");
+                    String statusID = rs.getString("statusID");
+                    CarDTO cdto = new CarDTO(carID, carName, image, colorDTO, year, cateDTO, price, quantity, statusID);
+                    if (this.carList == null) {
+                        this.carList = new ArrayList<>();
+                    }
+                    this.carList.add(cdto);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
     }
 }

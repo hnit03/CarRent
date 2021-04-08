@@ -11,3 +11,4 @@ register=RegisterServlet
 verify=verify.jsp
 verified=VerifyServlet
 verify_again=VerifyAgainServlet
+searchCar=SearchCarServlet
