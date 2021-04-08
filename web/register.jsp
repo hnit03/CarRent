@@ -99,10 +99,10 @@
                                                 <li>
                                                     <div class="form-group">
                                                         <textarea type="text" class="form-control" 
-                                                               id="email" placeholder="Address" required
-                                                               name="address" value="${param.address}"
-                                                               minlength="6" maxlength="300"
-                                                               ></textarea>
+                                                                  id="email" placeholder="Address" required
+                                                                  name="address" value="${param.address}"
+                                                                  minlength="6" maxlength="300"
+                                                                  ></textarea>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -125,6 +125,9 @@
                 </div>
             </div>
         </div>
+
+        <jsp:include page="howitwork.jsp"/>
+        
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

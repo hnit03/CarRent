@@ -88,6 +88,9 @@
                 </div>
             </div>
         </div>
+
+        <jsp:include page="howitwork.jsp"/>
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>
